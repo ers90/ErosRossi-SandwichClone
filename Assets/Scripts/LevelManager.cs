@@ -12,7 +12,6 @@ public class LevelManager : MonoBehaviour
     public int levelNo=1;
 
     public int sandwichElementCount;
-    private GridData levelData;
 
     private List<GridData> levels;
     private Action<int> onLevelDataReady;
@@ -75,19 +74,7 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.SetInt("LevelNo", levelNo);
         DOTween.KillAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    public void LoadCurrentLevel()
-    {
-        DOTween.KillAll();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    
-    public void LoadPrevLevel()
-    {
-        levelNo -= 1;
-        PlayerPrefs.SetInt("LevelNo", levelNo);
-        SceneManager.LoadScene(0);
-    }
+    } 
 
     public void RestartGame()
     {

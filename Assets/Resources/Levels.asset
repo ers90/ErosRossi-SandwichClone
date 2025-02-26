@@ -209,3 +209,52 @@ MonoBehaviour:
     - row: 3
       column: 3
       tileState: 0
+  - tiles:
+    - row: 0
+      column: 0
+      tileState: 5
+    - row: 0
+      column: 1
+      tileState: 3
+    - row: 0
+      column: 2
+      tileState: 11
+    - row: 0
+      column: 3
+      tileState: 7
+    - row: 1
+      column: 0
+      tileState: 3
+    - row: 1
+      column: 1
+      tileState: 3
+    - row: 1
+      column: 2
+      tileState: 2
+    - row: 1
+      column: 3
+      tileState: 12
+    - row: 2
+      column: 0
+      tileState: 4
+    - row: 2
+      column: 1
+      tileState: 10
+    - row: 2
+      column: 2
+      tileState: 6
+    - row: 2
+      column: 3
+      tileState: 1
+    - row: 3
+      column: 0
+      tileState: 2
+    - row: 3
+      column: 1
+      tileState: 8
+    - row: 3
+      column: 2
+      tileState: 9
+    - row: 3
+      column: 3
+      tileState: 1

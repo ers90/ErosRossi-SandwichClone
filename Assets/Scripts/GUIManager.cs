@@ -10,8 +10,12 @@ public class GUIManager : MonoBehaviour
     [Header("UI References")]
     public TextMeshProUGUI levelNoText;
     public GameObject winPanel; 
-    public GameObject finalVictoryPanel; 
     public GameObject gameplayPanel;
+    public GameObject finalVictoryPanel;
+    public TextMeshProUGUI warningText;
+
+    public float fadeDuration = 0.5f;
+    public float displayDuration = 2f;
 
     private void MakeInstance()
     {
@@ -26,6 +30,13 @@ public class GUIManager : MonoBehaviour
         MakeInstance();
     }
 
+    private void Start()
+    {
+        if (warningText != null)
+        {
+            warningText.alpha = 0f;
+        }
+    }
 
     public void SetLevelText(int levelNo)
     {
@@ -45,16 +56,19 @@ public class GUIManager : MonoBehaviour
         if (gameplayPanel != null) gameplayPanel.SetActive(false);
     }
 
-   
-    public void OnTapToNextLevel()
+    public void ShowWarningMessage(string message)
     {
-        LevelManager.instance.LoadNextLevel();
-    }
-
-   
-    public void OnTapToRetryLevel()
-    {
-        LevelManager.instance.LoadCurrentLevel();
+        if (warningText == null)
+        {
+            Debug.LogWarning("warningText non è assegnato nel GUIManager!");
+            return;
+        }
+        warningText.text = message;
+        warningText.alpha = 0f;
+        warningText.DOFade(1f, fadeDuration).OnComplete(() =>
+        {
+            warningText.DOFade(0f, fadeDuration).SetDelay(displayDuration);
+        });
     }
 
     public void ShowFinalVictoryPanel()
@@ -62,10 +76,5 @@ public class GUIManager : MonoBehaviour
         HideAllPanels();
         if (finalVictoryPanel != null)
             finalVictoryPanel.SetActive(true);
-    }
-
-    public void OnTapToRestartGame()
-    {
-        LevelManager.instance.RestartGame();
     }
 }

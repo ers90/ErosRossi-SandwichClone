@@ -27,9 +27,7 @@ public class GameManager : MonoBehaviour
     public int unSandwichedElementCount;
 
     // Eventi di callback 
-    public Action onLevelFailed;
     public Action onLevelCompleted;
-    public Action onFinalAnimationsCanFired;
 
     private bool canMove = true;
     
@@ -54,8 +52,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         moveHistory = new List<MoveData>();
-
-        onLevelFailed += OnLevelFailed;
         onLevelCompleted += OnLevelCompleted;
     }
 
@@ -203,7 +199,7 @@ public class GameManager : MonoBehaviour
 
         if (movingIsJustBread && targetIsJustBread)
         {
-            Debug.Log("Non puoi impilare due fette di pane direttamente!");
+            GUIManager.instance.ShowWarningMessage("You can't stack two pieces of bread together!");
             return; 
         }
 
@@ -260,10 +256,6 @@ public class GameManager : MonoBehaviour
                     {
                         onLevelCompleted?.Invoke();
                     }
-                    else
-                    {
-                        onLevelFailed?.Invoke();
-                    }
                 } 
                 
 
@@ -271,10 +263,6 @@ public class GameManager : MonoBehaviour
                 if (CheckIfTheLevelCompleted(selectedTileNode))
                 {
                     onLevelCompleted?.Invoke();
-                }
-                else
-                {
-                    onLevelFailed?.Invoke();
                 }
             });
     }
@@ -412,10 +400,5 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("LEVEL COMPLETED");
         GUIManager.instance.ShowWinPanel();
-    }
-
-    private void OnLevelFailed()
-    {
-        Debug.Log("LEVEL FAILED");
     }
 }
